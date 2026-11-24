@@ -1,0 +1,10 @@
+const assert=require('node:assert/strict');
+const M=require('../public/universe-model.js');
+assert.equal(M.validDate('2024-02-29'),true);assert.equal(M.validDate('2023-02-29'),false);assert.equal(M.validDate('2024-13-01'),false);
+assert.deepEqual(M.reduce(39),{value:3,trail:[39,12,3]});assert.equal(M.reduce(29).value,11);assert.equal(M.reduce(22).value,22);assert.equal(M.reduce(33).value,33);assert.equal(M.reduce(22,false).value,4);
+const n=M.numerology('1997-08-14','Alex Morgan','2026-11-12');assert.equal(n.life.value,3);assert.equal(n.names.expression.value,11);assert.equal(n.names.soul.value,4);assert.equal(n.names.personality.value,7);assert.equal(n.cycles.year.value,5);assert.equal(n.cycles.month.value,7);assert.equal(n.cycles.day.value,1);
+assert.equal(M.numerology('','','2026-11-12').life,null);assert.equal(M.nameNumbers(''),null);assert.equal(M.nameNumbers('Rhythm').soul,null);assert.equal(M.nameNumbers('Éva').expression.value,M.nameNumbers('Eva').expression.value);
+assert.equal(M.distance(359,1),2);assert.equal(M.distance(1,359),2);assert.equal(M.normalize(-24),336);
+const p=[{longitude:142},{longitude:24},{longitude:342},{longitude:75}];const a=M.aspects(p,3,'all');assert(a.some(x=>x.name==='Trine'&&x.orb===2));assert(a.some(x=>x.name==='Square'&&x.orb===3));assert(!M.aspects(p,1,'all').some(x=>x.a===0&&x.b===1));assert(M.aspects(p,3,'Square').every(x=>x.name==='Square'));
+assert.equal(M.house(142,[120,150,180,210,240,270,300,330,0,30,60,90]),1);assert.equal(M.house(150,[120,150,180,210,240,270,300,330,0,30,60,90]),2);assert.equal(M.house(359,[120,150,180,210,240,270,300,330,0,30,60,90]),8);
+console.log('PASS: 30 calculation, missing-input, date, master-number, aspect and house assertions.');

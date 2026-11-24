@@ -1,0 +1,8 @@
+{
+  "source": "GeoNames via geonamescache 3.0.2",
+  "license": "CC BY 4.0",
+  "attribution": "https://www.geonames.org/",
+  "coverage": "cities500: towns over 500 inhabitants and administrative seats; aliases indexed by normalized Latin spelling",
+  "cities": 234908,
+  "shards": 706
+}

@@ -1,0 +1,20 @@
+{
+  "realm-travel": {
+    "duration_seconds": 1.65,
+    "peak_dbfs": -9.0,
+    "rms_dbfs": -24.43,
+    "bytes": 79244
+  },
+  "gateway-arrival": {
+    "duration_seconds": 1.9,
+    "peak_dbfs": -9.0,
+    "rms_dbfs": -22.73,
+    "bytes": 91244
+  },
+  "milestone-light": {
+    "duration_seconds": 2.2,
+    "peak_dbfs": -9.0,
+    "rms_dbfs": -23.66,
+    "bytes": 105644
+  }
+}

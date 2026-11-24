@@ -1,0 +1,107 @@
+/* ------------------------------------------------------------------
+   Cosmic atmosphere (CSS layer behind the WebGL canvas).
+   Imported from the shared atmosphere.css, with the violet clouds
+   strengthened and three extra purple/orchid/cyan layers added.
+------------------------------------------------------------------- */
+.cosmic-atmosphere {
+  z-index: 0;
+  pointer-events: none;
+  background: #080818;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.cosmic-nebula-base,
+.cosmic-nebula-wisps,
+.cosmic-nebula-violet {
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  inset: -5%;
+}
+
+.cosmic-nebula-base {
+  opacity: 0.98;
+  background:
+    radial-gradient(at 30% 40%, rgba(139, 124, 246, 0.5), transparent 52%),
+    radial-gradient(at 70% 60%, rgba(95, 211, 183, 0.22), transparent 50%),
+    radial-gradient(at 50% 50%, rgba(228, 197, 138, 0.15), transparent 60%);
+  animation: 84s ease-in-out infinite alternate nebula-breathe;
+}
+
+.cosmic-nebula-wisps {
+  mix-blend-mode: screen;
+  opacity: 0.4;
+  background:
+    radial-gradient(at 20% 80%, rgba(176, 75, 158, 0.28), transparent 50%),
+    radial-gradient(at 85% 25%, rgba(47, 111, 208, 0.2), transparent 50%);
+  animation: 92s ease-in-out infinite alternate nebula-drift;
+}
+
+/* extra purple presence: deep violet veils + lavender/orchid cores */
+.cosmic-nebula-violet {
+  mix-blend-mode: screen;
+  opacity: 0.85;
+  background:
+    radial-gradient(ellipse 46% 38% at 14% 22%, rgba(124, 82, 232, 0.5), transparent 70%),
+    radial-gradient(ellipse 40% 34% at 82% 74%, rgba(150, 90, 240, 0.42), transparent 70%),
+    radial-gradient(ellipse 30% 26% at 72% 18%, rgba(196, 120, 235, 0.3), transparent 70%),
+    radial-gradient(ellipse 34% 28% at 26% 84%, rgba(106, 72, 214, 0.38), transparent 70%),
+    radial-gradient(ellipse 60% 44% at 50% 52%, rgba(90, 60, 190, 0.2), transparent 75%);
+  animation: 110s ease-in-out infinite alternate nebula-drift;
+}
+
+.cosmic-stars {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+}
+.cosmic-stars-near { animation: 100s ease-in-out infinite alternate stars-drift; }
+.cosmic-stardust { animation: 140s ease-in-out infinite alternate-reverse stars-drift; }
+
+.cosmic-rainbow-dots {
+  z-index: 0;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.rainbow-dot {
+  opacity: 0;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0) 70%);
+  border-radius: 50%;
+  animation: 12s ease-in-out infinite rainbow-dot-float;
+  position: absolute;
+}
+
+@keyframes rainbow-dot-float {
+  0% { opacity: 0; transform: translate(0) scale(1); }
+  10% { opacity: 0.8; }
+  90% { opacity: 0.8; }
+  to { transform: translate(var(--dx), var(--dy)) scale(0.4); opacity: 0; }
+}
+@keyframes nebula-breathe {
+  0% { transform: scale(1.015) translate(-0.3%, 0.2%); }
+  to { transform: scale(1.055) translate(0.5%, -0.4%); }
+}
+@keyframes nebula-drift {
+  0% { transform: scale(1.02) translate(-1%, 0.5%); }
+  to { transform: scale(1.065) translate(1%, -0.7%); }
+}
+@keyframes stars-drift {
+  0% { transform: translate(-0.3%, 0.15%); }
+  to { transform: translate(0.4%, -0.2%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cosmic-nebula-base,
+  .cosmic-nebula-wisps,
+  .cosmic-nebula-violet,
+  .cosmic-stars-near,
+  .cosmic-stardust,
+  .rainbow-dot { animation: none !important; }
+}

@@ -1,0 +1,21 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const source=fs.readFileSync(require('node:path').join(__dirname,'../public/threshold.js'),'utf8');
+const saved=[];const param=()=>({value:0,setValueAtTime(v){this.value=v},setTargetAtTime(v){this.value=v},cancelScheduledValues(){},linearRampToValueAtTime(){},exponentialRampToValueAtTime(){}});
+const node=()=>({gain:param(),connect(n){this.output=n},disconnect(){}});
+class Context{constructor(){this.currentTime=0;this.state='running';this.destination={};this.oscillators=[]}createGain(){return node()}createAnalyser(){return node()}createMediaElementSource(){return node()}addEventListener(){}resume(){return Promise.resolve()}createOscillator(){const n={...node(),frequency:{value:0},start(){},stop(){this.stopped=true}};this.oscillators.push(n);return n}}
+class Audio{constructor(){this.paused=true;this.ended=false;this.currentTime=0;this.playCount=0}addEventListener(){}play(){this.paused=false;this.playCount++;return Promise.resolve()}pause(){this.paused=true}load(){}}
+const scope={experience:{sound:false,volume:.2,effectsVolume:.35,listeningMode:'silence',lastListeningMode:'both'},worldPrefs:{},listeningModes:{both:'Music + Effects',music:'Music Only',effects:'Effects Only',silence:'Silence'},saveWorldPrefs(){},saveExperience(){saved.push({...scope.experience})},window:{AudioContext:Context},Audio,document:{body:{append(){}},querySelectorAll(){return []},querySelector(){return null},getElementById(){return null}}};
+vm.createContext(scope);vm.runInContext(source.slice(source.indexOf('const soundCues='),source.indexOf('function startResonator'))+'\nthis.engine=experienceAudio;',scope);const a=scope.engine;let fetches=0;scope.fetch=async()=>{fetches++;return {ok:true,arrayBuffer:async()=>new ArrayBuffer(8)}};Context.prototype.decodeAudioData=async()=>({decoded:true});Context.prototype.createBufferSource=function(){return {...node(),start(){this.started=true},stop(){this.stopped=true}}};
+(async()=>{
+ await a.chooseMode('both');assert.equal(a.playing,true);assert.equal(a.master.gain.value,.2);assert.equal(a.effects.gain.value,.35);assert.equal(a.master.output,a.context.destination);assert.equal(a.effects.output,a.context.destination);
+ assert.equal(a.chime(),true);const first=[...a.effectVoices];a.chime();assert.ok(first.every(n=>n.stopped));assert.equal(a.effectVoices.length,3);
+ await a.chooseMode('music');assert.equal(a.effects.gain.value,0);assert.equal(a.effectVoices.length,0);assert.equal(a.chime(),false);assert.equal(a.playing,true);
+ await a.chooseMode('effects');assert.equal(a.audio.paused,true);assert.equal(a.master.gain.value,0);assert.equal(a.effects.gain.value,.35);assert.equal(a.chime(),true);
+ scope.experience.volume=.6;a.fade(.6);assert.equal(a.master.gain.value,0);scope.experience.effectsVolume=.1;a.effectsGain();assert.equal(a.effects.gain.value,.1);
+ await a.chooseMode('silence');assert.equal(a.master.gain.value,0);assert.equal(a.effects.gain.value,0);assert.equal(a.effectVoices.length,0);assert.equal(a.audio.paused,true);
+ await a.enable();assert.equal(scope.experience.listeningMode,'effects');assert.equal(a.audio.paused,true);assert.equal(a.effects.gain.value,.1);
+ assert.equal(saved.at(-1).volume,.6);assert.equal(saved.at(-1).effectsVolume,.1);
+ await a.playCue('arrival');assert.equal(fetches,1);assert.equal(a.effectVoices[0].started,true);assert.equal(a.effectVoices[0].output,a.effects);await a.playCue('arrival');assert.equal(fetches,1);const active=a.effectVoices[0];await a.playCue('milestone');assert.equal(active.stopped,true);assert.equal(a.effectVoices.length,1);let release;scope.fetch=()=>new Promise(resolve=>{release=resolve});const pending=a.playCue('travel');a.mute();release({ok:true,arrayBuffer:async()=>new ArrayBuffer(8)});assert.equal(await pending,false);assert.equal(a.effectVoices.length,0);assert.equal(await a.playCue('arrival'),false);
+ a.mute();a.audio.play=()=>Promise.reject(Error('Blocked'));await a.chooseMode('music');assert.equal(a.blocked,true);assert.match(a.error,/did not start/);
+ console.log('PASS: four modes, independent channel gains, remembered volumes, immediate silence, effect replacement, resume, lazy cue caching, replacement, muted pending-load cancellation and rejected-playback handling.');
+})().catch(e=>{console.error(e);process.exitCode=1});

@@ -1,0 +1,11 @@
+import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
+export const accounts = sqliteTable('accounts', {id:text('id').primaryKey(),email:text('email').notNull().unique(),hash:text('hash').notNull(),salt:text('salt').notNull(),created:integer('created').notNull()});
+export const sessions = sqliteTable('sessions', {token:text('token').primaryKey(),userId:text('user_id').notNull().references(()=>accounts.id),expires:integer('expires').notNull()});
+export const journal = sqliteTable('journal', {id:text('id').primaryKey(),userId:text('user_id').notNull().references(()=>accounts.id),question:text('question').notNull(),answer:text('answer').notNull(),context:text('context').notNull(),created:integer('created').notNull()});
+export const attempts = sqliteTable('attempts',{key:text('key').primaryKey(),count:integer('count').notNull(),expires:integer('expires').notNull()});
+export const alchemyJourneys = sqliteTable('alchemy_journeys', {id:text('id').primaryKey(),owner:text('owner').notNull(),data:text('data').notNull(),updated:integer('updated').notNull()});
+
+export const libraryAccounts = sqliteTable('library_accounts',{userId:text('user_id').primaryKey().references(()=>accounts.id),revision:integer('revision').notNull().default(0),snapshot:text('snapshot').notNull(),updated:integer('updated').notNull()});
+export const accountData = sqliteTable('account_data',{userId:text('user_id').primaryKey().references(()=>accounts.id),revision:integer('revision').notNull().default(0),snapshot:text('snapshot').notNull(),updated:integer('updated').notNull()});
+export const publicProfiles = sqliteTable('public_profiles',{userId:text('user_id').primaryKey().references(()=>accounts.id),slug:text('slug').notNull().unique(),displayName:text('display_name').notNull().default(''),avatarForm:text('avatar_form'),shareName:integer('share_name').notNull().default(0),shareAvatar:integer('share_avatar').notNull().default(0),published:integer('published').notNull().default(0),updated:integer('updated').notNull()});
+export const profileReports = sqliteTable('profile_reports',{id:text('id').primaryKey(),reporterId:text('reporter_id').references(()=>accounts.id,{onDelete:'set null'}),targetSlug:text('target_slug').notNull(),reason:text('reason').notNull(),created:integer('created').notNull()});

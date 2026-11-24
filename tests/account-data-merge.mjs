@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {mergeAccountData} from '../public/account-data-merge.mjs';
+const categories={'inner-orbit-demo-v1':'progress','inner-orbit-natal-input':'birthChart'};
+const base={version:1,profile:{displayName:'',avatarForm:'feminine'},preferences:{sync:{progress:true,birthChart:true,appearanceAudio:false,alchemy:false}},records:{'inner-orbit-demo-v1':{value:'old',updatedAt:1}},conflicts:[]};
+const local=structuredClone(base);local.records['inner-orbit-demo-v1']={value:'local edit',updatedAt:2};
+const remote=structuredClone(base);remote.revision=3;remote.records['inner-orbit-demo-v1']={value:'account edit',updatedAt:3};remote.records['inner-orbit-natal-input']={value:'remote chart',updatedAt:3};
+const merged=mergeAccountData(base,local,remote,categories);
+assert.equal(merged.records['inner-orbit-demo-v1'].value,'local edit');
+assert.equal(merged.records['inner-orbit-natal-input'].value,'remote chart');
+assert.deepEqual(merged.conflicts.map(({source,value})=>({source,value})),[{source:'account',value:'account edit'},{source:'device',value:'local edit'}]);
+const optedOut=structuredClone(remote);optedOut.preferences.sync.progress=false;
+const safe=mergeAccountData(base,local,optedOut,categories);
+assert.equal(safe.records['inner-orbit-demo-v1'],undefined);
+assert.equal(safe.records['inner-orbit-natal-input'].value,'remote chart');
+console.log('PASS: account-data three-way merge preserves both edits, merges independent keys, and honors remote privacy opt-out.');

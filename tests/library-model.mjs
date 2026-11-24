@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';import {build} from 'esbuild';
+await build({entryPoints:['components/celestial-library/accountPersistence.ts','components/celestial-library/data/library.ts','components/celestial-library/data/persistence.ts'],outdir:'/tmp/io-library-model',bundle:true,platform:'node',format:'esm',outExtension:{'.js':'.mjs'}});
+const {emptySnapshot,mergeSnapshots}=await import('/tmp/io-library-model/accountPersistence.mjs');
+const {allBooks}=await import('/tmp/io-library-model/data/library.mjs');
+const original=emptySnapshot(),a=emptySnapshot(),b=emptySnapshot();a.ledger=[{id:'a',title:'A',text:'a',tags:'',updated:1}];b.ledger=[{id:'b',title:'B',text:'b',tags:'',updated:2}];assert.equal(mergeSnapshots(original,a,b).ledger.length,2);
+const base=structuredClone(a),deleted=emptySnapshot();assert.equal(mergeSnapshots(base,deleted,base).ledger.length,0);
+const l=structuredClone(a),r=structuredClone(a);l.ledger[0].text='left';r.ledger[0].text='right';assert.throws(()=>mergeSnapshots(a,l,r),/Conflicting edits/);
+const bookIds=new Set(),passages=new Set();let chapters=0;for(const book of allBooks){assert(!bookIds.has(book.id));bookIds.add(book.id);const ids=new Set();for(const ch of book.chapters){assert(!ids.has(ch.id));ids.add(ch.id);chapters++;for(const verse of ch.verses)for(const p of verse.lines){assert(p.id&&typeof p.text==='string');assert(!passages.has(p.id));passages.add(p.id)}}}
+assert.equal(bookIds.size,14);assert(chapters>=262);console.log(`PASS: ${bookIds.size} books, ${chapters} chapters, ${passages.size} stable unique passages; independent edits merge, deletion survives, conflicting same-record edits stop.`);
+let values=new Map([['inner-orbit-ledger-v1',JSON.stringify([{id:'legacy',title:'Legacy',text:'Preserve',tags:'',updated:1}])]]);globalThis.localStorage={getItem:k=>values.get(k)??null,setItem:(k,v)=>values.set(k,v)};
+const {localLibraryAdapter}=await import('/tmp/io-library-model/data/persistence.mjs');const migrated=localLibraryAdapter.load();assert.equal(migrated.ledger[0].text,'Preserve');assert(values.has('inner-orbit-ledger-v1'));assert(!values.has('inner-orbit-celestial-v2'));console.log('PASS: migration read preserves originals and does not write until host consent.');

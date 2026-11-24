@@ -1,0 +1,20 @@
+const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+const Core=require('../public/natal-core.js'),Tools=require('../public/natal-tools.js');
+const source=fs.readFileSync(require('node:path').join(__dirname,'../public/universe.js'),'utf8');
+const scope={NatalTools:Tools,natalChart:null};vm.createContext(scope);
+vm.runInContext(source.slice(source.indexOf('let clockSkyCache='),source.indexOf('function clockAspectMeaning')),scope);
+const guest=scope.clockSnapshot('1997-08-14');
+assert.deepEqual(guest.planets,Core.positions(new Date('1997-08-14T12:00:00Z')));
+assert.equal(guest.natal,null);assert.equal(guest.aspects.length,0);
+const birth=Core.calculate({date:'1997-08-14',time:'06:24',zone:'America/Denver',lat:39.7392,lon:-104.9903,houses:'whole',unknown:false});
+const original=JSON.stringify(birth);scope.natalChart=birth;
+const personal=scope.clockSnapshot('1997-08-14');
+assert.equal(personal.planets,guest.planets); // cached sky, fresh natal comparison
+assert.deepEqual(personal.aspects,Tools.crossAspects(guest.planets,birth.planets,4));
+assert.ok(personal.aspects.some(a=>a.a===0&&a.b===0&&a.name==='Conjunction'&&a.orb<.03));
+const tomorrow=scope.clockSnapshot('1997-08-15');
+assert.ok(Core.delta(tomorrow.planets[0].longitude,guest.planets[0].longitude)>.9);
+assert.equal(JSON.stringify(birth),original);
+scope.natalChart=null;assert.equal(scope.clockSnapshot('1997-08-15').aspects.length,0);
+assert.throws(()=>scope.clockSnapshot('2101-01-01'));
+console.log('PASS: Clock uses calculated UTC sky, optional actual natal comparison, cache invalidation, day changes and unchanged natal data.');

@@ -1,0 +1,43 @@
+/* The person is the center of the world, never a contained portrait. */
+.soul-hub:not(.list-mode){height:max(1190px,100svh);min-height:1190px}
+.soul-hub:not(.list-mode) .galaxy-map,.soul-hub:not(.list-mode):has(.realm-detail.open) .galaxy-map{inset:265px 4% 185px}
+.soul-hub:not(.list-mode) .soul-core,.soul-hub:not(.list-mode):has(.realm-detail.open) .soul-core{top:49%;width:430px;height:645px;padding:0;border:0!important;border-radius:0;background:none!important;box-shadow:none!important;overflow:visible;z-index:2;outline-offset:12px}
+.soul-hub .soul-core>.sf-avatar{width:100%;height:100%}
+.soul-hub .soul-core .sf-human{inset:0}
+.soul-hub .soul-core .sf-avatar-aura{inset:2% -65% -7%;opacity:calc(var(--sf-aura)*.65);filter:blur(34px)}
+.soul-hub .soul-core .sf-frame{display:none}
+.soul-hub .soul-core .sf-avatar[data-tier=bloom] .sf-frame{display:block;inset:-7% -25% auto;width:150%;height:70%;opacity:.48;mask-image:linear-gradient(#000 35%,transparent 85%)}
+.soul-hub .soul-core .sf-avatar[data-tier=bloom] .sf-frame>ellipse,.soul-hub .soul-core .sf-avatar[data-tier=bloom] .sf-frame>path{display:none}
+.soul-hub .soul-core .sf-avatar[data-tier=pro] .sf-frame{display:block;opacity:.55}
+.soul-hub .soul-core .sf-pro-crown>ellipse{display:none}
+.soul-hub .soul-core .sf-aura-orbit{left:-27%;right:-27%;opacity:.7}
+.soul-hub .soul-core .sf-heart-light{width:20%;top:22%}
+.soul-hub .sf-hub-name{top:97%;font-size:31px;pointer-events:none;text-shadow:0 2px 10px #140722}
+.soul-hub .sf-hub-name small{font-size:9px;margin-top:8px}
+.soul-hub:not(.list-mode) .galaxy-orbits{opacity:.27}
+.soul-hub:not(.list-mode) .realm{width:220px;z-index:3}
+.soul-hub:not(.list-mode) .realm:nth-of-type(2){--x:18%!important;--y:12%!important}
+.soul-hub:not(.list-mode) .realm:nth-of-type(3){--x:82%!important;--y:12%!important}
+.soul-hub:not(.list-mode) .realm:nth-of-type(4){--x:12%!important;--y:38%!important}
+.soul-hub:not(.list-mode) .realm:nth-of-type(5){--x:88%!important;--y:38%!important}
+.soul-hub:not(.list-mode) .realm:nth-of-type(6){--x:13%!important;--y:65%!important}
+.soul-hub:not(.list-mode) .realm:nth-of-type(7){--x:87%!important;--y:65%!important}
+.soul-hub:not(.list-mode) .realm:nth-of-type(8){--x:23%!important;--y:91%!important}
+.soul-hub:not(.list-mode) .realm:nth-of-type(9){--x:77%!important;--y:91%!important}
+.soul-hub .realm-label strong{font-size:27px;line-height:1.12;text-shadow:0 2px 8px #080310,0 0 18px #090211}
+.soul-hub .realm-whisper{max-width:190px;margin:7px auto 0;text-shadow:0 2px 8px #090211}
+.soul-hub .u-hub-story{top:246px;font-size:12px}
+.soul-hub .realm-detail{z-index:8;top:310px;right:3%;width:330px;max-height:650px;overflow:auto}
+.soul-hub:has(.realm-detail.open) .realm:not(.selected){opacity:.45}
+.soul-hub .soul-core:focus-visible{outline:2px solid #ffe4ac}
+@media(min-width:1800px){.soul-hub:not(.list-mode){height:max(1380px,100svh);min-height:1380px}.soul-hub:not(.list-mode) .galaxy-map,.soul-hub:not(.list-mode):has(.realm-detail.open) .galaxy-map{inset:290px 12% 180px}.soul-hub:not(.list-mode) .soul-core,.soul-hub:not(.list-mode):has(.realm-detail.open) .soul-core{width:510px;height:765px}.soul-hub .u-hub-story{top:260px}}
+@media(max-width:1000px){.soul-hub:not(.list-mode) .soul-core,.soul-hub:not(.list-mode):has(.realm-detail.open) .soul-core{width:350px;height:580px}.soul-hub:not(.list-mode) .realm{width:170px}.soul-hub .realm-label strong{font-size:23px}.soul-hub .realm-art{width:110px;height:110px}.soul-hub .realm-whisper{font-size:11px}.soul-hub .realm-detail{top:360px}.soul-hub:not(.list-mode) .galaxy-map,.soul-hub:not(.list-mode):has(.realm-detail.open) .galaxy-map{left:1%;right:1%}}
+@media(max-width:600px){.soul-hub:not(.list-mode){height:1260px;min-height:1260px}.soul-hub .hub-intro{top:100px}.soul-hub .hub-intro h1{font-size:36px}.soul-hub .hub-intro p{font-size:12px;max-width:290px}.soul-hub .u-hub-story{top:275px;gap:8px 16px;font-size:11px}.soul-hub:not(.list-mode) .galaxy-map,.soul-hub:not(.list-mode):has(.realm-detail.open) .galaxy-map{inset:330px 0 210px}.soul-hub:not(.list-mode) .soul-core,.soul-hub:not(.list-mode):has(.realm-detail.open) .soul-core{width:280px;height:465px;top:49%}.soul-hub:not(.list-mode) .realm{width:108px}.soul-hub .realm-art{width:77px;height:77px}.soul-hub .realm-label{max-width:108px}.soul-hub .realm-label strong{font-size:19px;line-height:1.12}.soul-hub .realm-whisper{display:none}.soul-hub .realm-progress{font-size:9px;max-width:95px}.soul-hub .sf-hub-name{font-size:26px}.soul-hub .sf-hub-name small{font-size:7px}.soul-hub .realm-detail{top:auto;bottom:20px;right:4%;left:4%;width:auto;max-height:60svh}.soul-hub .realm-detail h2{font-size:34px}.soul-hub .realm-detail p{font-size:14px}.soul-hub:not(.list-mode) .realm:nth-of-type(2),.soul-hub:not(.list-mode) .realm:nth-of-type(8){--x:20%!important}.soul-hub:not(.list-mode) .realm:nth-of-type(3),.soul-hub:not(.list-mode) .realm:nth-of-type(9){--x:80%!important}.soul-hub:not(.list-mode) .realm:nth-of-type(4),.soul-hub:not(.list-mode) .realm:nth-of-type(6){--x:14%!important}.soul-hub:not(.list-mode) .realm:nth-of-type(5),.soul-hub:not(.list-mode) .realm:nth-of-type(7){--x:86%!important}}
+@media(prefers-reduced-motion:reduce){.soul-hub .soul-core,.soul-hub .galaxy-space{animation:none!important;transition:none!important}}
+/* Reserve a separate lower sky for the existing achievement constellation. */
+.soul-hub:not(.list-mode){height:max(1380px,100svh);min-height:1380px}
+.soul-hub:not(.list-mode) .galaxy-map,.soul-hub:not(.list-mode):has(.realm-detail.open) .galaxy-map{bottom:375px}
+.soul-hub:not(.list-mode) .hub-whisper{top:1070px;bottom:auto}
+.soul-hub .sf-hub-effects{inset:0;mask-image:linear-gradient(transparent,#000 15%,#000 80%,transparent)}
+@media(min-width:1800px){.soul-hub:not(.list-mode){height:max(1430px,100svh);min-height:1430px}.soul-hub:not(.list-mode) .galaxy-map,.soul-hub:not(.list-mode):has(.realm-detail.open) .galaxy-map{bottom:320px}.soul-hub:not(.list-mode) .soul-core,.soul-hub:not(.list-mode):has(.realm-detail.open) .soul-core{width:467px;height:700px}.soul-hub:not(.list-mode) .hub-whisper{top:1160px}}
+@media(max-width:600px){.soul-hub:not(.list-mode){height:1440px;min-height:1440px}.soul-hub:not(.list-mode) .galaxy-map,.soul-hub:not(.list-mode):has(.realm-detail.open) .galaxy-map{bottom:390px}.soul-hub:not(.list-mode) .hub-whisper{top:1090px}}

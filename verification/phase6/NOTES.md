@@ -1,0 +1,13 @@
+# Phase 6 — art direction and legibility
+
+Completed: localized opaque violet glass behind Hub welcome, progress and labels; larger readable controls; cleaner high-resolution destination sculptures with varied materials; a new Journey-only violet/blue sanctuary; enlarged seven distinct milestone graphs with seven geometric motifs; direct pointer selection of actual milestone stars; keyboard access through path buttons and corresponding milestone controls. The selected celestial form and cosmetics still use the shared identity renderer.
+
+Assets recovered from the prior unfinished pass: Celestial Sanctuary Beneath a Violet Sky, and Inner Orbit celestial destination sprites. The background is encoded as assets/journey-sanctuary-v22.webp; the sprite sheet is split into eight cells under assets/destinations-v22/. All eight assets are retained, while the Hub Pathways object deliberately shows the user's real active constellation.
+
+Rendered inspection: mobile 390, tablet 768, desktop 1440, ultrawide 2560 CSS-pixel iframe widths. Document scrollWidth equals clientWidth on both main routes at all four widths. Full-height mobile/tablet inspection found and corrected inherited width!important on progress, avatar positioning outside the scene, and seventh-path overlap. Screenshots also inspected from the direct desktop app.
+
+Interactions actually tested: all seven growth paths opened by keyboard; direct star 4 opens its corresponding Share activity; milestone selection; complete/reopen; refresh persistence; Hub progress count; same Avatar 3 seat artwork on both routes; motion pause sets atmospheric animation to none; Hub List View; Observatory approach, pause, skip, threshold, actual feature entry and return. Test completion was reopened, restoring the original 2/5 Creative Spark and 1/5 Shared Horizon achievements. Final selected path restored to Creative Spark. No user data reset.
+
+Automated checks passed: tests/*.test.cjs (city resolution, versioned chart model, deterministic numerology, natal timing/DST, houses, ephemeris regression, transits), Starforge migration/configuration, gateway identity and storage-restriction fallback.
+
+Limits: this is Phase 6, not a completed Phase 7 end-to-end or real Safari/device audit. CSS reduced-motion overrides and the in-app motion pause were reviewed/tested; the OS motion preference was not changed. User progress and cosmetics remain browser-local prototype state. Production backend, purchase verification, and social network were not introduced. Existing audio and gateway visualizer were outside this refinement batch. No launch-readiness claim.

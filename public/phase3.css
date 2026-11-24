@@ -1,0 +1,17 @@
+/* Focused Phase 3: landing, home galaxy and growth constellation. */
+.hero-narrative>p{max-width:490px;text-shadow:0 2px 12px #090312,0 1px 3px #090312}
+.hero-narrative:before{content:"";position:absolute;inset:-35px -35px -20px;z-index:-1;background:radial-gradient(ellipse at 25% 45%,#10071c85,transparent 72%);pointer-events:none}.hero-narrative{isolation:isolate}
+.celestial-band{border-color:#e1b77b99;box-shadow:inset 0 1px #ffe3ad55,0 0 32px #bb74e635}
+.soul-hub{height:1230px;min-height:1230px}.galaxy-map,.soul-hub:has(.realm-detail.open) .galaxy-map{inset:365px 3% 220px}
+.u-hub-story{font-size:14px;gap:14px 26px}.u-hub-story a{min-height:44px;display:inline-flex;align-items:center}
+.hub-achievement p{font-size:28px;margin:7px 0}.hub-progress-stars{display:flex;justify-content:center;gap:12px;margin-top:10px}.hub-progress-stars a{display:grid;place-items:center;width:44px;height:44px;font-size:27px;color:#b7a0ca88;transition:color .3s,filter .3s}.hub-progress-stars a.lit{color:#ffdda0;filter:drop-shadow(0 0 10px #ffd47e)}.hub-progress-stars a:hover{color:#fff0ce;filter:drop-shadow(0 0 12px #ffdb9a)}
+.hub-progress-stars a:focus-visible,.realm:focus-visible{outline:2px solid #ffe1a4;outline-offset:5px;border-radius:12px}
+.journey-path-bar{margin-top:18px}.growth-path-picker>button{background:#180b2680}.growth-path-picker>button[aria-pressed=true]{background:linear-gradient(120deg,#69426799,#25132bea);border-color:#e3c08e}
+.growth-detail{background:linear-gradient(135deg,#4e285bde,#1c102ded 65%);border-color:#e9c68f99;box-shadow:inset 0 1px #ffe3b550,0 0 40px #a665d42b,0 18px 50px #09031266}
+.milestone-meaning p,.milestone-activity p{font-size:16px;line-height:1.8}.milestone-meaning h3,.completion-message{font-size:13px}.growth-detail #complete-milestone{font-size:15px}.star-label small{font-size:11px}.edge-line{stroke-width:1.6}.growth-star.completed .star-diamond{filter:drop-shadow(0 0 12px #ffd27b)}
+@media(max-width:600px){.soul-hub{height:1370px;min-height:1370px}.galaxy-map,.soul-hub:has(.realm-detail.open) .galaxy-map{inset:480px 0 240px}.u-hub-story{font-size:13px}.list-mode .galaxy-map,.list-mode:has(.realm-detail.open) .galaxy-map{inset:400px 6% 240px}.hub-achievement p{font-size:24px}.hub-progress-stars{gap:5px}.hub-achievement{bottom:165px}.hero-narrative>p{font-size:16px;line-height:1.75}.growth-detail{padding:24px 21px}.milestone-meaning p,.milestone-activity p{font-size:16px}.growth-path-picker>button>span:last-child{font-size:13px}.growth-path-picker small{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.hub-progress-stars a{transition:none}}
+.hub-achievement{display:block;position:absolute;left:50%;bottom:142px;top:auto;transform:translateX(-50%);width:min(470px,85%);text-align:center;z-index:4}.hub-achievement .world-kicker{font-size:11px}.hub-achievement>a{font-size:13px}.soul-hub{height:1350px;min-height:1350px}.galaxy-map,.soul-hub:has(.realm-detail.open) .galaxy-map{bottom:330px}
+@media(max-width:600px){.soul-hub{height:1440px;min-height:1440px}.galaxy-map,.soul-hub:has(.realm-detail.open) .galaxy-map{bottom:350px}.hub-achievement{bottom:170px}.list-mode .galaxy-map,.list-mode:has(.realm-detail.open) .galaxy-map{bottom:340px}}
+@media(min-width:601px){.galaxy-map,.soul-hub:has(.realm-detail.open) .galaxy-map{top:420px}}
+@media(min-width:601px){.soul-hub .core-title{top:245px}.soul-hub .core-title small{display:none}}

@@ -1,0 +1,1 @@
+{"extends":"./tsconfig.json","compilerOptions":{"noEmit":true},"include":["components/celestial-library/**/*.ts","components/celestial-library/**/*.tsx","app/library/**/*.tsx","app/api/library/**/*.ts","cloudflare-env.d.ts"],"exclude":["node_modules","observatory","dist"]}
