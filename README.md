@@ -15,6 +15,10 @@ npm start
 
 Use a local D1 database with the migrations in `drizzle/` for development. Do not apply these to production without a reviewed migration plan. See `docs/library-integration-2026-11-23.md` for the verified local environment and its limits.
 
+## Development checklist
+
+Use [`DEVELOPMENT_CHECKLIST.md`](DEVELOPMENT_CHECKLIST.md) for the current IO-001–IO-037 status snapshot. It marks only verified complete work; the full original requirements remain in [`docs/Inner-Orbit-Master-Development-Tracker.pdf`](docs/Inner-Orbit-Master-Development-Tracker.pdf).
+
 ## Destinations
 
 Cinematic arrival, Home Galaxy / Celestial Soul Hub, three-step birth onboarding, Personal Blueprint, Resonance Engine, Show Me Why / How, Your Journey, Expert View, Connected Universes, Spirit Guides, Stardust Rewards and Our Supporters.
