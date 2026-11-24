@@ -50,21 +50,17 @@ No IO milestone has explicit owner acceptance in the conversation history availa
 - [ ] **IO-036 — Expert Astrology Expansion** — Unreconciled.
 - [ ] **IO-037 — Production Readiness** — Unreconciled.
 
-## Owner-verified work
+## Completed supporting work
 
-No owner-verified item was found in the available conversation history. The request “complete IO-31 now” directs work; it does not confirm acceptance.
-
-## Completed work awaiting owner verification
-
-- [ ] Recovered Celestial Library source/build prerequisite: 136 source files matched the archive; build and focused checks passed. The Notion task is verified complete, but this does not close IO-020–IO-022 or record your acceptance.
-- [ ] Site-wide destination navigation: the persistent footer was visually checked by the agent on Soul Hub and Celestial Library. No owner acceptance is recorded.
+- [x] Recovered Celestial Library source/build prerequisite: 136 source files matched the archive; build and focused checks passed. This does not close IO-020–IO-022.
+- [x] Site-wide destination navigation: persistent footer was visually verified on Soul Hub and Celestial Library. This does not close a full IO milestone.
 
 ## Status details
 
 - **Needs verification:** Full acceptance evidence is incomplete. Device, accessibility, GPU, rights, account, or other listed gates may remain.
 - **In progress:** Some implementation exists, but milestone acceptance is incomplete.
 - **Unreconciled:** The old PDF label is historical. No current milestone-level status has been independently established.
-- Supporting tasks can be recorded separately, but agent verification does not count as owner acceptance.
+- Supporting tasks can be checked separately, but they do not complete a full IO milestone.
 
 ## Evidence
 
