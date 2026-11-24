@@ -6,9 +6,9 @@ The [original 19-page tracker PDF](docs/Inner-Orbit-Master-Development-Tracker.p
 
 ## Completion rule
 
-Each IO number is one checklist item. Check it only after its full acceptance criterion is demonstrated and accepted. Partial work stays unchecked.
+Each IO number is one checklist item. Check it only after its full acceptance criterion is demonstrated and you explicitly accept it. Partial work stays unchecked.
 
-No full IO milestone is marked complete in the current reconciliation evidence. The verified Library source/build task is a prerequisite, not completion of IO-020, IO-021, or IO-022.
+No IO milestone has explicit owner acceptance in the conversation history available for this update. The current tracker also marks no full IO milestone Verified complete. The Library source/build task is a verified prerequisite, not completion of IO-020, IO-021, or IO-022.
 
 ## Milestones
 
@@ -50,17 +50,21 @@ No full IO milestone is marked complete in the current reconciliation evidence. 
 - [ ] **IO-036 — Expert Astrology Expansion** — Unreconciled.
 - [ ] **IO-037 — Production Readiness** — Unreconciled.
 
-## Verified supporting work
+## Owner-verified work
 
-- [x] Recovered Celestial Library source/build prerequisite verified: 136 source files matched the archive; build and focused checks passed. This does not close IO-020–IO-022.
-- [x] Site-wide destination navigation added and visually checked on Soul Hub and Celestial Library; the persistent footer exposes core destinations and a More menu.
+No owner-verified item was found in the available conversation history. The request “complete IO-31 now” directs work; it does not confirm acceptance.
+
+## Completed work awaiting owner verification
+
+- [ ] Recovered Celestial Library source/build prerequisite: 136 source files matched the archive; build and focused checks passed. The Notion task is verified complete, but this does not close IO-020–IO-022 or record your acceptance.
+- [ ] Site-wide destination navigation: the persistent footer was visually checked by the agent on Soul Hub and Celestial Library. No owner acceptance is recorded.
 
 ## Status details
 
 - **Needs verification:** Full acceptance evidence is incomplete. Device, accessibility, GPU, rights, account, or other listed gates may remain.
 - **In progress:** Some implementation exists, but milestone acceptance is incomplete.
 - **Unreconciled:** The old PDF label is historical. No current milestone-level status has been independently established.
-- Supporting tasks can be checked separately, but they do not change an IO milestone checkbox.
+- Supporting tasks can be recorded separately, but agent verification does not count as owner acceptance.
 
 ## Evidence
 
